@@ -1,0 +1,12 @@
+# global ignore
+node_modules/
+uploads/
+.env
+
+# backend
+backend/node_modules/
+backend/.env
+
+# frontend
+frontend-react/node_modules/
+frontend-react/dist/
