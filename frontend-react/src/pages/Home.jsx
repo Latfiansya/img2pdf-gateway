@@ -30,9 +30,13 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <button onClick={() => navigate("/register")} className="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-black hover:scale-105 transition transform">
+            <button
+                onClick={() => navigate("/register")}
+                className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-indigo-700 hover:scale-105 transition transform focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            >
                 Mulai Sekarang &rarr;
             </button>
+
             <button onClick={() => navigate("/login")} className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition">
                 Sudah Punya Akun?
             </button>
@@ -40,14 +44,37 @@ export default function Home() {
 
             {/* Visual Mockup (Kotak bayangan sebagai placeholder UI) */}
             <div className="w-full max-w-5xl bg-white rounded-t-3xl shadow-2xl border border-gray-200 p-4 pb-0 overflow-hidden mx-auto">
-            <div className="bg-gray-100 rounded-t-xl h-64 md:h-96 flex items-center justify-center border-b border-gray-200">
-                <p className="text-gray-400 font-medium">✨ Tampilan Dashboard Workspace Anda ✨</p>
+            <div className="bg-gray-100 rounded-t-xl h-48 md:h-64 p-6 grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-200">
+                <div className="bg-white rounded-xl shadow p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 className="font-bold text-gray-800 mb-2">Upload Gambar</h3>
+                        <p className="text-sm text-gray-500">Pilih banyak foto sekaligus untuk dijadikan PDF.</p>
+                    </div>
+                    <div className="text-indigo-600 font-semibold text-sm mt-4">Multi Upload Ready</div>
+                </div>
+
+                <div className="bg-white rounded-xl shadow p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 className="font-bold text-gray-800 mb-2">Auto Cover Page</h3>
+                        <p className="text-sm text-gray-500">Judul, penulis, dan tanggal otomatis.</p>
+                    </div>
+                    <div className="text-indigo-600 font-semibold text-sm mt-4">Smart Layout</div>
+                </div>
+
+                <div className="bg-white rounded-xl shadow p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 className="font-bold text-gray-800 mb-2">Kompresi Otomatis</h3>
+                        <p className="text-sm text-gray-500">PDF kecil tapi kualitas tetap jernih.</p>
+                    </div>
+                    <div className="text-indigo-600 font-semibold text-sm mt-4">Auto Optimize</div>
+                </div>
             </div>
+
             </div>
         </main>
 
         {/* Footer Minimal */}
-        <footer className="bg-white border-t border-gray-200 py-8 text-center text-sm text-gray-500">
+        <footer className="bg-white border-t border-gray-200 py-4 text-center text-sm text-gray-500 font-normal">
             &copy; 2026 IMG2PDF Gateway. Built with React & Node.js
         </footer>
         </div>

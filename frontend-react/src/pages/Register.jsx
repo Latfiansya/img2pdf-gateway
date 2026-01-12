@@ -8,65 +8,74 @@ export default function Register() {
 
     const submit = async (e) => {
         e.preventDefault();
-        if (form.password.length < 6) return alert("Password min 6 karakter");
+
+        if (!form.username || !form.email || !form.password)
+        return alert("Semua field wajib diisi.");
+
+        if (!form.email.includes("@") || !form.email.includes("."))
+        return alert("Format email tidak valid.");
+
+        if (form.password.length < 6)
+        return alert("Password minimal 6 karakter.");
 
         try {
         await api.post("/auth/register", form);
-        alert("Registrasi sukses! Silakan login.");
+        alert("Registrasi berhasil, silakan login.");
         navigate("/login");
         } catch (err) {
-        alert(err.response?.data?.message || "Register failed");
+        alert(err.response?.data?.message || "Registrasi gagal.");
         }
     };
 
     return (
         <div className="min-h-screen flex bg-white">
-        {/* KIRI: Visual Branding (Sama tapi variasi warna dikit boleh) */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gray-900 justify-center items-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-gray-800 to-black opacity-90"></div>
-            <div className="relative z-10 text-center text-white p-12">
-            <h1 className="text-5xl font-extrabold mb-4">Bergabunglah</h1>
-            <p className="text-xl text-gray-400">Mulai manajemen dokumen digital Anda hari ini.</p>
+        <div className="hidden lg:flex lg:w-1/2 justify-center items-center bg-gradient-to-br from-indigo-600 to-purple-900">
+            <div className="text-center text-white p-12">
+            <h1 className="text-5xl font-extrabold mb-4">IMG2PDF</h1>
+            <p className="text-indigo-200 text-xl">Buat akun baru</p>
             </div>
         </div>
 
-        {/* KANAN: Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16">
-            <div className="w-full max-w-md space-y-8">
-            <div className="text-center lg:text-left">
-                <h2 className="text-3xl font-bold text-gray-900">Buat Akun Baru</h2>
-                <p className="mt-2 text-gray-600">Gratis dan proses cepat.</p>
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+            <div className="w-full max-w-md space-y-6">
+
+            <button onClick={() => navigate("/")} className="text-indigo-500 text-sm">
+                ← Back to Home
+            </button>
+
+            <div>
+                <h2 className="text-3xl font-bold text-white">Register</h2>
+                <p className="text-gray-400">Buat akun baru</p>
             </div>
 
-            <form className="mt-8 space-y-6" onSubmit={submit}>
-                <div className="space-y-4">
-                <input 
-                    type="text" 
-                    placeholder="Username"
-                    onChange={e => setForm({...form, username: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 outline-none"
+            <form onSubmit={submit} className="space-y-4">
+                <input
+                placeholder="Username"
+                onChange={e => setForm({ ...form, username: e.target.value })}
+                className="w-full px-4 py-3 bg-white text-black border border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
-                <input 
-                    type="email" 
-                    placeholder="Email Address"
-                    onChange={e => setForm({...form, email: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 outline-none"
+                <input
+                placeholder="Email"
+                onChange={e => setForm({ ...form, email: e.target.value })}
+                className="w-full px-4 py-3 bg-white text-black border border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
-                <input 
-                    type="password" 
-                    placeholder="Password (Min 6 char)"
-                    onChange={e => setForm({...form, password: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 outline-none"
+                <input
+                type="password"
+                placeholder="Password (min 6 karakter)"
+                onChange={e => setForm({ ...form, password: e.target.value })}
+                className="w-full px-4 py-3 bg-white text-black border border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
-                </div>
 
-                <button type="submit" className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-black transition shadow-lg">
-                Daftar Akun
+                <button className="w-full bg-cyan-500 text-white py-3 rounded-lg font-semibold">
+                Register
                 </button>
             </form>
 
-            <p className="text-center text-sm text-gray-600">
-                Sudah punya akun? <span onClick={() => navigate("/login")} className="text-gray-900 font-bold cursor-pointer hover:underline">Login disini</span>
+            <p className="text-gray-400 text-sm text-center">
+                Sudah punya akun?{" "}
+                <span onClick={() => navigate("/login")} className="text-cyan-400 cursor-pointer">
+                Login
+                </span>
             </p>
             </div>
         </div>

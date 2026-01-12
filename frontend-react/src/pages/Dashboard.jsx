@@ -232,10 +232,10 @@ export default function Dashboard() {
             </div>
             </div>
             
-            <div className="mt-8 text-center text-gray-400 text-xs">
-            &copy; 2026 IMG2PDF Gateway by Yikri. All rights reserved.
-            </div>
         </main>
+        <footer className="bg-white border-t border-gray-200 py-4 text-center text-sm text-gray-100 font-normal">
+            &copy; 2026 IMG2PDF Gateway. Built with React & Node.js
+        </footer>
         </div>
     );
 }
