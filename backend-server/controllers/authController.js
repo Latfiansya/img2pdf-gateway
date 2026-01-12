@@ -11,6 +11,12 @@ exports.register = async (req, res) => {
 
         if (!username || !email || !password)
         return res.status(400).json({ message: "All fields required" });
+        
+        // password length check
+        if (password.length < 6)
+        return res.status(400).json({
+        message: "Password must be at least 6 characters"
+        });
 
         // cek email
         const emailExist = await User.findOne({ where: { email } });
@@ -52,12 +58,10 @@ exports.login = async (req, res) => {
     // cek user
     if (!user)
         return res.status(401).json({ message: "User not found" });
-    // cek password
-    
+    // cek password    
     const valid = await bcrypt.compare(password, user.password);
     if (!valid)
         return res.status(401).json({ message: "Password is incorrect" });
-
     
     const activeSession = await UserSession.findOne({
         where: { UserId: user.id, isActive: true }

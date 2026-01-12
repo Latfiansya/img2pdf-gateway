@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 // Inisialisasi express app
 const app = express();
+// Import routes and middlewares
+const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 const adminRoutes = require("./routes/adminRoutes");
@@ -13,7 +15,13 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: "Internal error" });
 });
 
+app.use(cors({
+    origin: "http://localhost:3001",
+    credentials: true
+}));
+
 app.use(express.json());
+// Test route
 app.get("/", (req, res) => {
     res.send("IMG2PDF Gateway API is running");
 });

@@ -1,18 +1,16 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+    const nav = useNavigate();
+
     return (
-        <div style={{ padding: 40 }}>
+        <div className="page">
         <h1>IMG2PDF Gateway</h1>
-        <p>Instant Report Generator with Auto Compression.</p>
-
-        <Link to="/register">
-            <button>Get Started</button>
-        </Link>
-
-        <Link to="/login" style={{ marginLeft: 10 }}>
-            <button>Login</button>
-        </Link>
+        <p>Instant Report Generator with Auto Compression</p>
+        <div className="actions">
+            <button onClick={() => nav("/register")}>Get Started</button>
+            <button onClick={() => nav("/login")}>Login</button>
+        </div>
         </div>
     );
 }
