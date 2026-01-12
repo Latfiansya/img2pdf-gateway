@@ -3,8 +3,8 @@ export default function Navbar({ onOpenApiKey, onLogout }) {
         <nav className="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center sticky top-0 z-40">
         {/* KIRI: Logo Branding */}
         <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-            I
+            <div className="w-12 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+            I2P
             </div>
             <span className="text-xl font-bold text-gray-800 tracking-tight">IMG2PDF <span className="text-indigo-600">Gateway</span></span>
         </div>
