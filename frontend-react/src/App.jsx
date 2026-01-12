@@ -2,9 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Convert from "./pages/Convert";
-import ApiKey from "./pages/ApiKey";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard"; // Ini sekarang workspace utama
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -15,10 +13,11 @@ export default function App() {
       <Route path="/register" element={<Register />} />
 
       <Route element={<ProtectedRoute />}>
+        {/* Dashboard adalah pusat segalanya sekarang */}
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/convert" element={<Convert />} />
-        <Route path="/apikey" element={<ApiKey />} />
       </Route>
+      
+      {/* Route lama /convert dan /apikey bisa dihapus atau direirect ke /dashboard jika mau */}
     </Routes>
   );
 }

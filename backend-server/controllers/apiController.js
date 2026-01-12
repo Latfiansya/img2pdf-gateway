@@ -47,6 +47,19 @@ exports.convertPdf = async (req, res) => {
     const title = hasMeta ? capitalizeWords(req.body.title) : null;
     const author = hasMeta ? capitalizeWords(req.body.author) : null;
 
+    // --- LOGIKA PENAMAAN FILE BARU (DIMULAI DARI SINI) ---
+    let filenameBase = "IMG2PDF-Export"; // Default name
+    
+    if (hasMeta && title) {
+        // Sanitasi: Hapus karakter aneh selain huruf/angka/spasi/dash, lalu ganti spasi dengan underscore
+        filenameBase = title.replace(/[^a-zA-Z0-9\-_ ]/g, "").trim().replace(/\s+/g, "_");
+    }
+
+    // Ambil tanggal format YYYY-MM-DD
+    const dateStr = new Date().toISOString().split('T')[0];
+    const finalFilename = `${filenameBase}_${dateStr}.pdf`;
+    // ----------------------------------------------------
+
     const PAGE = 800;
     const MARGIN = 20;
     const HEADER = hasMeta ? 30 : 0;
@@ -58,7 +71,8 @@ exports.convertPdf = async (req, res) => {
     });
 
     res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
+    // Gunakan finalFilename yang sudah dibuat di atas
+    res.setHeader("Content-Disposition", `attachment; filename=${finalFilename}`);
     doc.pipe(res);
 
     // ===== COVER PAGE =====
@@ -123,6 +137,3 @@ exports.convertPdf = async (req, res) => {
 
     doc.end();
 };
-
-
-

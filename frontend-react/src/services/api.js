@@ -10,4 +10,22 @@ api.interceptors.request.use(config => {
     return config;
 });
 
+// Service untuk Generate/Regenerate Key
+export const generateApiKeyService = () => {
+    return api.post("/api/v1/generate-key");
+};
+
+// Service untuk Convert PDF
+// butuh headers khusus untuk x-public-key dan x-private-key
+export const convertPdfService = (formData, publicKey, privateKey) => {
+    return api.post("/api/v1/convert-pdf", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            "x-public-key": publicKey,
+            "x-private-key": privateKey
+        },
+        responseType: "blob" // agar return-nya berupa file (binary)
+    });
+};
+
 export default api;
